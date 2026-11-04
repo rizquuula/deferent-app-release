@@ -54,12 +54,7 @@ chmod +x ClaudePlay_<version>_amd64.AppImage
 
 **macOS (.dmg)**
 
-1. Open the `.dmg`, then drag ClaudePlay to Applications.
-2. The app is not signed yet. To open it the first time, right-click ClaudePlay in Applications and choose **Open**. You can also run this command:
-
-```bash
-xattr -dr com.apple.quarantine /Applications/ClaudePlay.app
-```
+Open the `.dmg`, then drag ClaudePlay to Applications. From version 1.0.1, the app has a Developer ID signature and Apple notarization, so it opens with a normal double-click.
 
 ## Check the download
 
