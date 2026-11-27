@@ -12,31 +12,32 @@ GitHub counts each release file download, including installers, update files, an
 
 ## Features
 
-- **Hub chat.** Read replies as they stream. Type `@` to pick a project or `/` to pick an available command.
+- **Hub chat.** Read replies as they stream. Type `@` to pick a project or `/` to pick an available command. Messages sent while the Hub is busy queue and run one at a time.
 - **Workers.** Follow live transcripts, stop running Workers, and resume their sessions. Deferent offers to resume paused Workers when you reopen the app.
-- **Projects and sessions.** Keep a registry of your projects and filter sessions by machine, project, and status. See each Worker’s context usage when its harness reports it. Starting with v2.0.3, it also appears on the Worker’s card in the Hub’s Sessions sidebar.
+- **Projects and sessions.** Keep a registry of your projects and filter sessions by machine, project, and status. See context usage in each Worker session and on its card in the Hub’s Sessions sidebar when the harness reports it.
 - **Machine Settings.** Choose a default Worker harness for each machine and save settings for each harness. Projects can follow the machine default or pin a supported harness.
 - **Usage meters.** See account usage limits and reset times when available for the active Codex or Claude Code Hub.
+- **[Web access](#web-access).** Open Deferent in a paired browser while the desktop app is running.
 
 ## Downloads
 
-Choose an installer under **Assets** on the latest release page. Earlier releases use the `ClaudePlay_` prefix.
+Choose an installer under **Assets** on the latest release page. Older ClaudePlay releases use the `ClaudePlay_` prefix.
 
 | System | File |
 | --- | --- |
 | Linux x64, Debian or Ubuntu | `Deferent_<version>_amd64.deb` |
 | Linux x64, AppImage | `Deferent_<version>_amd64.AppImage` |
 | macOS, Apple Silicon | `Deferent_<version>_aarch64.dmg` |
-| Windows 11 x64, starting with v2.0.3 | `Deferent_<version>_x64-setup.exe` |
+| Windows 11 x64 | `Deferent_<version>_x64-setup.exe` |
 
 Download `SHA256SUMS.txt` from the same release to verify the installer. In the command examples, replace `<version>` with the version in your filename.
 
 ## Requirements
 
-- **Coding CLI.** Install the CLI for your chosen harness on your `PATH` and have an account for it. On Linux and macOS, you can use the [Codex CLI](https://learn.chatgpt.com/docs/codex/cli) or [Claude Code CLI](https://code.claude.com/docs/en/overview).
-- **Linux.** Use a recent x64 distribution, such as Debian 12 or Ubuntu 22.04 or newer. The `.deb` package requires WebKitGTK 4.1. The AppImage may need FUSE support on your system.
-- **Windows 11 x64.** Use native `codex.exe` on your `PATH` for the local Hub and Workers.
-- **Remote Workers (optional).** Configure an SSH alias in `~/.ssh/config` that connects without an interactive prompt. Install and sign in to the selected Worker CLI on the remote machine. For Windows SSH hosts, use native Claude Code (`claude.exe`) and an OpenSSH server with PowerShell as its default shell.
+- **macOS and Linux desktop.** Install the [Codex CLI](https://learn.chatgpt.com/docs/cli) or [Claude Code CLI](https://code.claude.com/docs/en/setup) and make `codex` or `claude` available on your `PATH`. Both are supported for the Hub and local Workers. The Hub also offers OpenCode, OpenCode v2, Pi, and OhMyPi as experimental choices.
+- **Linux packages.** Use a recent x64 distribution, such as Debian 12 or Ubuntu 22.04 or newer. The `.deb` package requires WebKitGTK 4.1. The AppImage may need FUSE support on your system.
+- **Windows desktop.** Use native `codex.exe` on your `PATH` for the Hub and local Workers.
+- **SSH Workers (optional).** Add an SSH alias in `~/.ssh/config` on the desktop machine and make sure you can connect without an interactive prompt. Install and sign in to the selected CLI on the SSH host. Linux and macOS SSH hosts can run Codex or Claude Code Workers. Windows SSH hosts run Claude Code Workers only and need native `claude.exe` and an OpenSSH server with PowerShell as its default shell.
 
 ## Check the download
 
@@ -60,7 +61,7 @@ shasum -a 256 -c SHA256SUMS.txt --ignore-missing
 Get-FileHash -Algorithm SHA256 -LiteralPath '.\Deferent_<version>_x64-setup.exe'
 ```
 
-On Windows, compare the returned hash with the entry for that installer in `SHA256SUMS.txt`.
+The Linux and macOS commands should report `OK` for your installer. On Windows, the returned hash must match the entry for that installer in `SHA256SUMS.txt`.
 
 ## Install
 
@@ -81,7 +82,7 @@ chmod +x "Deferent_<version>_amd64.AppImage"
 
 **macOS (.dmg)**
 
-Open the `.dmg` and drag Deferent to Applications. The app has a Developer ID signature and Apple notarization starting with v1.0.1.
+Open the `.dmg` and drag Deferent to Applications. The app has a Developer ID signature and is notarized by Apple.
 
 **Windows (NSIS .exe)**
 
@@ -89,13 +90,19 @@ Run `Deferent_<version>_x64-setup.exe` to install Deferent for your Windows acco
 
 ## First run
 
-1. Choose the Hub harness and the default for local Workers. On Windows, choose Codex for both.
-2. Follow the Hub sign-in instructions in **First Run**. The Hub has its own sign-in. On Windows, run the sign-in command in PowerShell.
-3. Workers use your normal CLI setup on the machine where they run. Use **Machine Settings** to choose the Worker harness for each SSH host.
+1. Open Deferent and review **Setup checks** on the welcome screen. To switch to Codex, select **Use Codex for the Hub** or **Use Codex for local Workers** where shown. On Windows, use Codex for both.
+2. Follow the separate Hub sign-in in **Setup checks**. For Codex, copy the sign-in command, run it in your terminal (PowerShell on Windows), then select **Recheck sign-in**. For Claude Code, select **Sign in** and follow the prompts.
+3. Sign in to the Worker CLI as usual on each machine that runs Workers. Use **Machine Settings** to choose the Worker harness for each SSH host.
+
+## Web access
+
+Web access is off by default. On the desktop, open **Settings → Web access**, turn it on, and select **Save**. To connect from another device, set **Host** to the desktop’s private-network address before saving. Web access uses plain HTTP, so use a private network such as a VPN. Select **Make link** and open the one-time link in the browser you want to pair. Keep the desktop app running.
+
+In v2.0.4, a macOS or Linux desktop host can also serve file previews to paired browsers. In **Settings → Web access → Project file previews**, select an active local project, enter an output folder relative to the project, and select **Approve folder**. Every paired browser can open supported files linked in Hub replies from that folder after confirming the preview. Static HTML opens in a sandbox.
 
 ## Updates
 
-Open **About** (the ⓘ button in the title bar) to check for, download, and install updates. See the [release notes](https://github.com/rizquuula/deferent-app-release/releases) for changes in each version.
+Open **About** (the ⓘ button in the title bar) to check for and install signed in-app updates. Select **Restart now** when prompted. If your version has no in-app updater, download the matching package from the [latest release](https://github.com/rizquuula/deferent-app-release/releases/latest) and follow the [installation steps](#install). For a manual AppImage upgrade, replace the old AppImage with the new executable file. See the [release notes](https://github.com/rizquuula/deferent-app-release/releases) for changes in each version.
 
 ## Your data
 
@@ -107,18 +114,18 @@ Deferent stores your project registry, sessions, Hub configuration, and logs (`l
 | macOS | `~/Library/Application Support/id.lyralabs.deferent/` |
 | Windows | `%APPDATA%\id.lyralabs.claudeplay` |
 
-On macOS, quit the older app before upgrading. Starting with v2.0.1, Deferent moves the previous data folder on first launch, keeps a private backup, and leaves a link at the old path. Keep the backup and link in place while using the upgraded app.
+On macOS, quit the older app before upgrading. When upgrading from a version before v2.0.1, first launch moves the old `id.lyralabs.claudeplay` data folder to the path above and leaves a link at the old location. The private backup is at `~/Library/Application Support/.id.lyralabs.deferent-migration-v1/legacy-backup/`. Keep the backup and link in place while using the upgraded app.
 
-For more detail in the logs, start the app with `DEFERENT_LOG_LEVEL=debug`. Earlier releases use `CLAUDEPLAY_LOG_LEVEL`.
+For more detail in the logs, start the app with `DEFERENT_LOG_LEVEL=debug`. Existing launchers can still use `CLAUDEPLAY_LOG_LEVEL`.
 
 ## Uninstall
 
-- **Linux (.deb).** Run `sudo apt remove deferent`. For earlier releases, use `sudo apt remove claude-play`.
+- **Linux (.deb).** Run `sudo apt remove deferent`. If you still have the old ClaudePlay package, use `sudo apt remove claude-play`.
 - **Linux (AppImage).** Delete the AppImage file.
 - **macOS.** Move Deferent from Applications to the Trash.
 - **Windows.** Open **Settings → Apps → Installed apps**, find **Deferent**, and choose **Uninstall**.
-- **App data.** To remove your Deferent settings and session history, quit the app and delete its data folder listed above.
+- **App data.** To remove your current Deferent settings and session history, quit the app and delete its data folder listed above. On macOS, an upgrade from the old data path can also leave the migration backup described above.
 
 ---
 
-© 2026 [Lyralabs ID](https://lyralabs.id/). Not affiliated with Anthropic.
+© 2026 [Lyralabs ID](https://lyralabs.id/).
