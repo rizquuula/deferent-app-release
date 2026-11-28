@@ -4,7 +4,7 @@ Deferent is a desktop hub for AI coding agents such as Codex and Claude Code.
 Chat with a Hub that plans work and hands tasks to Workers in your projects.
 Workers run locally or over SSH, and you can follow their live transcripts from one window.
 
-**[Download the latest release](https://github.com/rizquuula/deferent-app-release/releases/latest)**
+**[Download Deferent for your platform](#downloads)**
 
 [![Release asset downloads](https://img.shields.io/github/downloads/rizquuula/deferent-app-release/total?label=release%20asset%20downloads&logo=github&color=2f6fbb)](https://github.com/rizquuula/deferent-app-release/releases)
 
@@ -22,16 +22,16 @@ GitHub counts each release file download, including installers, update files, an
 
 ## Downloads
 
-Choose an installer under **Assets** on the [Deferent v2.0.5 release page](https://github.com/rizquuula/deferent-app-release/releases/tag/v2.0.5). Older ClaudePlay releases use the `ClaudePlay_` prefix.
+[Deferent v2.0.6](https://github.com/rizquuula/deferent-app-release/releases/tag/v2.0.6) is available for macOS (Apple Silicon) and Linux x64. The current Windows x64 installer is [Deferent v2.0.5](https://github.com/rizquuula/deferent-app-release/releases/tag/v2.0.5).
 
 | System | File |
 | --- | --- |
-| Linux x64, Debian or Ubuntu | `Deferent_2.0.5_amd64.deb` |
-| Linux x64, AppImage | `Deferent_2.0.5_amd64.AppImage` |
-| macOS, Apple Silicon | `Deferent_2.0.5_aarch64.dmg` |
-| Windows 11 x64 | `Deferent_2.0.5_x64-setup.exe` |
+| Linux x64, Debian or Ubuntu | [`Deferent_2.0.6_amd64.deb`](https://github.com/rizquuula/deferent-app-release/releases/download/v2.0.6/Deferent_2.0.6_amd64.deb) |
+| Linux x64, AppImage | [`Deferent_2.0.6_amd64.AppImage`](https://github.com/rizquuula/deferent-app-release/releases/download/v2.0.6/Deferent_2.0.6_amd64.AppImage) |
+| macOS, Apple Silicon | [`Deferent_2.0.6_aarch64.dmg`](https://github.com/rizquuula/deferent-app-release/releases/download/v2.0.6/Deferent_2.0.6_aarch64.dmg) |
+| Windows 11 x64 | [`Deferent_2.0.5_x64-setup.exe`](https://github.com/rizquuula/deferent-app-release/releases/download/v2.0.5/Deferent_2.0.5_x64-setup.exe) |
 
-Download `SHA256SUMS.txt` from the same release to verify the installer.
+[Verify your installer](#check-the-download) before running it. Older ClaudePlay releases use the `ClaudePlay_` prefix.
 
 ## Requirements
 
@@ -42,7 +42,10 @@ Download `SHA256SUMS.txt` from the same release to verify the installer.
 
 ## Check the download
 
-Save `SHA256SUMS.txt` alongside the installer and run the command for your system in that folder.
+Save the matching `SHA256SUMS.txt` beside your installer, then run the command for your system in that folder.
+
+- macOS and Linux v2.0.6 — [SHA256SUMS.txt](https://github.com/rizquuula/deferent-app-release/releases/download/v2.0.6/SHA256SUMS.txt)
+- Windows v2.0.5 — [SHA256SUMS.txt](https://github.com/rizquuula/deferent-app-release/releases/download/v2.0.5/SHA256SUMS.txt)
 
 **Linux**
 
@@ -71,14 +74,14 @@ For the Linux commands, open a terminal in the folder where you saved the instal
 **Linux (.deb)**
 
 ```bash
-sudo apt install "./Deferent_2.0.5_amd64.deb"
+sudo apt install "./Deferent_2.0.6_amd64.deb"
 ```
 
 **Linux (AppImage)**
 
 ```bash
-chmod +x "Deferent_2.0.5_amd64.AppImage"
-"./Deferent_2.0.5_amd64.AppImage"
+chmod +x "Deferent_2.0.6_amd64.AppImage"
+"./Deferent_2.0.6_amd64.AppImage"
 ```
 
 **macOS (.dmg)**
@@ -107,7 +110,11 @@ A macOS or Linux desktop host can also serve file previews to paired browsers. I
 
 ## Updates
 
-Open **About** (the ⓘ button in the title bar) to check for and install signed in-app updates. Select **Restart now** when prompted. If your version has no in-app updater, download the matching package from the [latest release](https://github.com/rizquuula/deferent-app-release/releases/latest) and follow the [installation steps](#install). For a manual AppImage upgrade, replace the old AppImage with the new executable file. See the [release notes](https://github.com/rizquuula/deferent-app-release/releases) for changes in each version.
+Open **About** (the ⓘ button in the title bar) to check for and install signed in-app updates. Select **Restart now** when prompted. If you need to update manually, choose the package for your platform under [Downloads](#downloads) and follow the [installation steps](#install). To upgrade an AppImage, replace the old file with the new executable. See the [release notes](https://github.com/rizquuula/deferent-app-release/releases) for changes in each version.
+
+Future Windows builds will be published manually in a separate release step. On Windows, Deferent v2.0.3–v2.0.5 still checks the shared update manifest, so **About** may show an error or offer no update while the latest release contains only macOS and Linux builds.
+
+When a newer Windows installer is published, compare its SHA-256 hash with `SHA256SUMS.windows-x86_64.txt` from that release. Run the verified installer once over your existing installation and choose **Do not uninstall** if prompted. After that upgrade, **About** checks the dedicated Windows update feed.
 
 Select **About → Licenses** to view third-party licenses.
 
@@ -121,7 +128,7 @@ Deferent stores your project registry, sessions, Hub configuration, and logs (`l
 | macOS | `~/Library/Application Support/id.lyralabs.deferent/` |
 | Windows | `%APPDATA%\id.lyralabs.deferent\` for application data and `%LOCALAPPDATA%\id.lyralabs.deferent\` for WebView data |
 
-Deferent v2.0.5 leaves legacy data in place without migrating it. On Linux and Windows, Deferent shows first-run setup if the new profile is empty. The engine still honors `--data-dir` when run directly.
+The default data folders on Linux and Windows changed in v2.0.5. Legacy data stays in place without migration. Deferent shows first-run setup if the new profile is empty. The engine still honors `--data-dir` when run directly.
 
 On macOS, quit the previous version before upgrading. Deferent uses the existing data at the path above directly. If your Claude Code Hub previously signed in through the old data path, it may ask you to sign in again. macOS may also ask for permissions again. An earlier migration may have left a link at the old location and a private backup at `~/Library/Application Support/.id.lyralabs.deferent-migration-v1/legacy-backup/`.
 
