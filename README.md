@@ -15,20 +15,20 @@ GitHub counts each release file download, including installers, update files, an
 - **Hub chat.** Read replies as they stream. Type `@` to pick a project or `/` to pick an available command. Messages sent while the Hub is busy queue and run one at a time.
 - **File previews.** Zoom images in Hub previews and select **Fit** to return to the fitted view. Hover over a previewable file link or focus it with the keyboard to see its filename.
 - **Workers.** Follow live transcripts, stop running Workers, and resume their sessions. Deferent offers to resume paused Workers when you reopen the app.
-- **Projects and sessions.** Keep a registry of your projects and filter sessions by machine, project, and status. See context usage in each Worker session and on its card in the Hub’s Sessions sidebar when the harness reports it.
-- **Machine Settings.** Choose a default Worker harness for each machine and save settings for each harness. Projects can follow the machine default or pin a supported harness.
+- **Projects and sessions.** Keep a registry of your projects and filter sessions by machine, project, and status. See context usage in each Worker session and on its card in the Hub’s Sessions sidebar when the harness reports it. In v2.0.7, the sidebar shows exact Worker session totals. Select **Load older** to browse past the first 100 sessions. Transcript availability depends on how long the Worker harness keeps its files.
+- **Machine Settings.** Choose a default Worker harness for each machine and save settings for each harness. In v2.0.7, **Worker settings** shows five harness cards with model, effort, and CLI status, and the machine’s **Active** switch sits next to **Save**. In new Worker choices, **OpenCode** uses OpenCode 2.x. Saved OpenCode 1.x settings and pins are preserved as **OpenCode (legacy)**. Ask the Hub to pin a supported harness for future Workers in a project or restore the machine default.
 - **Usage meters.** See account usage limits and reset times when available for the active Codex or Claude Code Hub. With fresh usage data, the Codex Hub estimates when a quota will run out if the current window’s average pace would exhaust it before reset.
 - **[Web access](#web-access).** Open Deferent in a paired browser while the desktop app is running.
 
 ## Downloads
 
-[Deferent v2.0.6](https://github.com/rizquuula/deferent-app-release/releases/tag/v2.0.6) is available for macOS (Apple Silicon) and Linux x64. The current Windows x64 installer is [Deferent v2.0.5](https://github.com/rizquuula/deferent-app-release/releases/tag/v2.0.5).
+[Deferent v2.0.7](https://github.com/rizquuula/deferent-app-release/releases/tag/v2.0.7) is the latest stable release for macOS (Apple Silicon) and Linux x64. The latest Windows x64 installer is [Deferent v2.0.5](https://github.com/rizquuula/deferent-app-release/releases/tag/v2.0.5).
 
 | System | File |
 | --- | --- |
-| Linux x64, Debian or Ubuntu | [`Deferent_2.0.6_amd64.deb`](https://github.com/rizquuula/deferent-app-release/releases/download/v2.0.6/Deferent_2.0.6_amd64.deb) |
-| Linux x64, AppImage | [`Deferent_2.0.6_amd64.AppImage`](https://github.com/rizquuula/deferent-app-release/releases/download/v2.0.6/Deferent_2.0.6_amd64.AppImage) |
-| macOS, Apple Silicon | [`Deferent_2.0.6_aarch64.dmg`](https://github.com/rizquuula/deferent-app-release/releases/download/v2.0.6/Deferent_2.0.6_aarch64.dmg) |
+| Linux x64, Debian or Ubuntu | [`Deferent_2.0.7_amd64.deb`](https://github.com/rizquuula/deferent-app-release/releases/download/v2.0.7/Deferent_2.0.7_amd64.deb) |
+| Linux x64, AppImage | [`Deferent_2.0.7_amd64.AppImage`](https://github.com/rizquuula/deferent-app-release/releases/download/v2.0.7/Deferent_2.0.7_amd64.AppImage) |
+| macOS, Apple Silicon | [`Deferent_2.0.7_aarch64.dmg`](https://github.com/rizquuula/deferent-app-release/releases/download/v2.0.7/Deferent_2.0.7_aarch64.dmg) |
 | Windows 11 x64 | [`Deferent_2.0.5_x64-setup.exe`](https://github.com/rizquuula/deferent-app-release/releases/download/v2.0.5/Deferent_2.0.5_x64-setup.exe) |
 
 [Verify your installer](#check-the-download) before running it. Older ClaudePlay releases use the `ClaudePlay_` prefix.
@@ -38,13 +38,13 @@ GitHub counts each release file download, including installers, update files, an
 - **macOS and Linux desktop.** Install the [Codex CLI](https://learn.chatgpt.com/docs/cli) or [Claude Code CLI](https://code.claude.com/docs/en/setup) and make `codex` or `claude` available on your `PATH`. Both are supported for the Hub and local Workers. The Hub also offers OpenCode, OpenCode v2, Pi, and OhMyPi as experimental choices.
 - **Linux packages.** Use a recent x64 distribution, such as Debian 12 or Ubuntu 22.04 or newer. The `.deb` package requires WebKitGTK 4.1. The AppImage may need FUSE support on your system.
 - **Windows desktop.** Use native `codex.exe` on your `PATH` for the Hub and local Workers.
-- **SSH Workers (optional).** Add an SSH alias in `~/.ssh/config` on the desktop machine and make sure you can connect without an interactive prompt. Install and sign in to the selected CLI on the SSH host. Linux and macOS SSH hosts can run Codex or Claude Code Workers. Windows SSH hosts run Claude Code Workers only and need native `claude.exe` and an OpenSSH server with PowerShell as its default shell.
+- **SSH Workers (optional).** Add an SSH alias in `~/.ssh/config` on the desktop machine and make sure you can connect without an interactive prompt. Install and sign in to the selected CLI on the SSH host. In v2.0.7, Linux and macOS SSH hosts support Claude Code, Codex, OpenCode, Pi, and OhMyPi Workers. Windows SSH hosts run Claude Code Workers only and need native `claude.exe` and an OpenSSH server with PowerShell as its default shell.
 
 ## Check the download
 
 Save the matching `SHA256SUMS.txt` beside your installer, then run the command for your system in that folder.
 
-- macOS and Linux v2.0.6 — [SHA256SUMS.txt](https://github.com/rizquuula/deferent-app-release/releases/download/v2.0.6/SHA256SUMS.txt)
+- macOS and Linux v2.0.7 — [SHA256SUMS.txt](https://github.com/rizquuula/deferent-app-release/releases/download/v2.0.7/SHA256SUMS.txt)
 - Windows v2.0.5 — [SHA256SUMS.txt](https://github.com/rizquuula/deferent-app-release/releases/download/v2.0.5/SHA256SUMS.txt)
 
 **Linux**
@@ -74,14 +74,14 @@ For the Linux commands, open a terminal in the folder where you saved the instal
 **Linux (.deb)**
 
 ```bash
-sudo apt install "./Deferent_2.0.6_amd64.deb"
+sudo apt install "./Deferent_2.0.7_amd64.deb"
 ```
 
 **Linux (AppImage)**
 
 ```bash
-chmod +x "Deferent_2.0.6_amd64.AppImage"
-"./Deferent_2.0.6_amd64.AppImage"
+chmod +x "Deferent_2.0.7_amd64.AppImage"
+"./Deferent_2.0.7_amd64.AppImage"
 ```
 
 **macOS (.dmg)**
@@ -106,13 +106,13 @@ Web access is off by default. On the desktop, open **Settings → Web access**, 
 
 To pair multiple browser profiles with the same link, select **Reusable pairing link → Create link**. The link works until you select **Replace link** or **Revoke link**. Paired browsers keep access and can be revoked individually.
 
-A macOS or Linux desktop host can also serve file previews to paired browsers. In **Settings → Web access → Project file previews**, select an active local project, enter an output folder relative to the project, and select **Approve folder**. Every paired browser can open supported files linked in Hub replies from that folder after confirming the preview. Static HTML opens in a sandbox.
+In v2.0.7, paired browsers can preview supported files linked in Hub replies from any eligible project registered on the macOS or Linux server, including projects registered through **Add project** in Web Access. Confirm each file with **Preview file**. Static HTML opens in a sandbox. Files on SSH hosts remain outside the scope of Web Access previews.
 
 ## Updates
 
 Open **About** (the ⓘ button in the title bar) to check for and install signed in-app updates. Select **Restart now** when prompted. If you need to update manually, choose the package for your platform under [Downloads](#downloads) and follow the [installation steps](#install). To upgrade an AppImage, replace the old file with the new executable. See the [release notes](https://github.com/rizquuula/deferent-app-release/releases) for changes in each version.
 
-Future Windows builds will be published manually in a separate release step. On Windows, Deferent v2.0.3–v2.0.5 still checks the shared update manifest, so **About** may show an error or offer no update while the latest release contains only macOS and Linux builds.
+The dedicated Windows download page and update feed will become available after the first manual Windows publish. Until then, use the v2.0.5 installer and checksum above. Deferent v2.0.3–v2.0.5 for Windows still checks the shared update manifest, so **About** may show an error or offer no update while the latest release contains only macOS and Linux builds.
 
 When a newer Windows installer is published, compare its SHA-256 hash with `SHA256SUMS.windows-x86_64.txt` from that release. Run the verified installer once over your existing installation and choose **Do not uninstall** if prompted. After that upgrade, **About** checks the dedicated Windows update feed.
 
